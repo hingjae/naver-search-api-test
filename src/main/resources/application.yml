@@ -1,0 +1,4 @@
+naver:
+  url: https://openapi.naver.com/v1/search/book.json
+  client-key: ${NAVER_CLIENT-ID}
+  client-secret: ${NAVER_CLIENT-SECRET}
