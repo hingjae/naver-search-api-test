@@ -15,7 +15,7 @@ import java.net.URI;
 import java.nio.charset.StandardCharsets;
 
 @Slf4j
-@RequestMapping("/api")
+@RequestMapping("/api/book-search")
 @RequiredArgsConstructor
 @RestController
 public class NaverApiController {
@@ -27,7 +27,7 @@ public class NaverApiController {
     private static final String NAVER_CLIENT_SECRET = "X-Naver-Client-Secret";
 
     @GetMapping
-    public ResponseEntity<String> searchBookByParam(String param) throws UnsupportedEncodingException {
+    public ResponseEntity<NaverApiResponse> searchBookByParam(String param) throws UnsupportedEncodingException {
         URI uri = UriComponentsBuilder.fromHttpUrl(naverProperties.getUrl())
                 .queryParam("query", param)
                 .queryParam("display", 10)
@@ -44,6 +44,6 @@ public class NaverApiController {
                 .build();
         log.info("uri : {}", uri);
 
-        return restTemplate.exchange(request, String.class);
+        return restTemplate.exchange(request, NaverApiResponse.class);
     }
 }
